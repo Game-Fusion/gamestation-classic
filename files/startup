@@ -1,0 +1,31 @@
+-- GameStation Classic
+-- The past is the future
+-- By TheMrIron2
+-- (C) 2017 Game Fusion, see documentation in developer mode for more information
+
+function center(y,string)
+  local w,h = term.getSize()
+  local x = (w/2)-(#string/2)
+  term.setCursorPos(x,y)
+  print(string)
+end
+
+local spd = 25
+function centerSlow(y, string, spd)
+  local w,h = term.getSize()
+  local x = (w/2)-(#string/2)
+  term.setCursorPos(x,y)
+  textutils.slowPrint(string, spd)
+end
+
+term.setBackgroundColour(colours.white)
+term.setTextColour(colours.red)
+term.clear()
+centerSlow(8, "Game Fusion Presents")
+sleep(1.5)
+term.clear()
+centerSlow(7, "GameStation Classic")
+sleep(1)
+center(10, "The past is the future")
+sleep(2)
+shell.run("GS1/Menu")
