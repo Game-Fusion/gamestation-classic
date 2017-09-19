@@ -1,0 +1,41 @@
+local w,h = term.getSize()
+local hi = (h-1)
+local function line(y)
+  term.setCursorPos(1,y)
+  term.clearLine()
+  sleep()
+end
+    
+local function draw()
+  term.setBackgroundColour(colours.blue)
+  term.clear()
+  term.setBackgroundColour(colours.white)
+  term.setCursorPos(1,1)
+  term.clearLine()
+  term.setTextColour(colours.blue)
+  center(1,"GameStation Classic")
+  center(3," Games ")
+  center(5," Disk ")
+  center(7," Update ")
+  center(9," Info ")
+  center(11," Power Off ")
+end
+ 
+while true do draw()
+  local evt,button,x,y = os.pullEvent("mouse_click")
+  if y == 3 then shell.run("/GS/GameMenu")
+  elseif y == 5 then shell.run("/GS/Disk")
+  elseif y == 7 then shell.run("/GS/Update")
+  elseif y == 9 then shell.run("/GS/Info") -- will later integrate this into Menu
+  elseif y == 11 then term.setBackgroundColour(colours.lightGrey)
+    term.setTextColour(colours.white)
+    term.clear()
+    center(8,"Shutting Down...")
+    sleep(1)
+    term.setBackgroundColour(colours.grey)
+    for i = 1, h do
+      line(i)
+    end
+    os.shutdown()
+  end
+end
